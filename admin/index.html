@@ -40,7 +40,7 @@
                     <b class="iconfont icon-arrowdownl"></b>
                 </a>
             </div>
-            
+
             <ul class="level02">
                 <!-- 左侧 文章列表 -->
                 <li><a href="./article_list.html" target="main_frame"><i class="iconfont icon-previewright"></i><span>文章列表</span></a></li>
@@ -79,8 +79,39 @@
     </div>
 
     <!-- 引入http.js文件 -->
-    <script src="./libs/http.js"></script>
-    <script src="./js/index.js"></script>
+    <!-- <script src="./libs/http.js"></script>-->
+    <!-- <script src="./js/index.js"></script> -->
+    <script>
+        $(function() {
+            $.ajax({
+                type: 'get',
+                url: 'http://localhost:8080/api/v1/admin/user/info',
+
+                success: function(backData) {
+                    // console.log(backData);
+                    $('.user_info>img').attr('src', backData.data.userPic);
+                    $('.user_info>span>i').text(backData.data.nickname)
+                    $('.user_center_link img').attr('src', backData.data.userPic)
+
+                }
+            })
+
+            // (function() {
+            //     var xhr = new XMLHttpRequest();
+            //     xhr.open('get', 'http://localhost/admin/user/info')
+            //     xhr.setRequestHeader('Authorization ', localStorage.getItem('token'))
+
+            //     xhr.onload = function() {
+            //         console.log(xhr.response);
+
+            //     }
+            //     xhr.send();
+            // })()
+
+            // 全局ajax 配置令牌
+
+        })
+    </script>
 </body>
 
 </html>
